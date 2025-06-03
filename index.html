@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Сайт временно закрыт</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #0d1117;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .glow-container {
+      position: relative;
+      text-align: center;
+      color: white;
+      z-index: 1;
+    }
+
+    .glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #00aaff66 0%, transparent 80%);
+      animation: pulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.6;
+        transform: scale(1.4);
+      }
+    }
+
+    .text {
+      position: relative;
+      z-index: 2;
+    }
+
+    .text h1 {
+      font-size: 3rem;
+      background: linear-gradient(to right, #00ccff, #0066ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 0 1rem 0;
+    }
+
+    .text p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-container">
+    <!-- Много свечений -->
+    <div class="glow" id="glow1"></div>
+    <div class="glow" id="glow2"></div>
+    <div class="glow" id="glow3"></div>
+    <div class="glow" id="glow4"></div>
+    <div class="glow" id="glow5"></div>
+    <div class="glow" id="glow6"></div>
+
+    <div class="text">
+      <h1>Спасибо за ваш интерес!</h1>
+      <p>К сожалению, нам пришлось временно закрыть сайт. Приносим свои извинения.</p>
+    </div>
+  </div>
+
+  <script>
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function animateGlow(glow) {
+      let x = random(-100, 100);
+      let y = random(-100, 100);
+
+      function move() {
+        x += random(-50, 50);
+        y += random(-50, 50);
+        glow.style.transition = 'transform 6s ease-in-out';
+        glow.style.transform = `translate(${x}px, ${y}px)`;
+        setTimeout(move, 6000);
+      }
+
+      move();
+    }
+
+    // Запускаем анимацию для всех свечений
+    for (let i = 1; i <= 6; i++) {
+      animateGlow(document.getElementById(`glow${i}`));
+    }
+  </script>
+</body>
+</html>
